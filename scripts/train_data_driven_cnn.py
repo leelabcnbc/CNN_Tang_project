@@ -1,7 +1,4 @@
-### 040320 -- basic data-driven CNN modeling on all batch data
-### partially for my course project, but useful for us too
-### not doing a lot of hyperparameter search; going with known
-### reasonable defaults
+
 import torch
 import numpy as np
 import pickle as pkl
@@ -143,58 +140,3 @@ for sd in range(num_seeds):
                                                                               channel_choices[i]) + "_L_" + str(
                                                                               layer_choices[j]) + "_model_")
 
-            # generate results for future examination and current reporting
-            # trained.eval()
-            # train_preds = []
-            # with torch.no_grad():
-            #
-            #     val_x = torch.tensor(val_x).float().cuda()
-            #     val_preds = trained(val_x).data.cpu().numpy()
-            #     val_x = val_x.detach().cpu().numpy()
-            #     for i, (x, y) in enumerate(train_loader):
-            #         x = x.float().to('cuda')
-            #         y = y.float().to('cuda')
-            #         preds = net(x).detach().cpu().numpy()
-            #         train_preds.extend(preds)
-            #     train_preds = np.stack(train_preds)
-            #
-            # # report results for this model
-            # val_corrs = [scipy.stats.pearsonr(val_preds[:, i].flatten(), val_y[:, i].flatten())[0] for i in
-            #              range(output_size)]
-            # train_corrs = [scipy.stats.pearsonr(train_preds[:, i].flatten(), cur_y[:, i].flatten())[0] for i in
-            #                range(output_size)]
-            # print('XXXXXXXXXXXXXXXXXXXXXXX')
-            #
-            # for i in range(len(train_corrs)):
-            #     if np.isnan(train_corrs[i]):
-            #         train_corrs[i] = 0.0
-            # print('train correlations: ')
-            # print(train_corrs)
-            # print(f'average train correlation: {np.mean(train_corrs)}')
-            #
-            # for i in range(len(val_corrs)):
-            #     if np.isnan(val_corrs[i]):
-            #         val_corrs[i] = 0.0
-            # print('validation correlations: ')
-            # print(val_corrs)
-            # print(f'average validation correlation: {np.mean(val_corrs)}')
-            #
-            # print('XXXXXXXXXXXXXXXXXXXXXXX')
-
-    # # save results and model
-    # save_dir = SAVE_DIR + f'data_driven_cnn/sd{sd}/'
-    # if not os.path.isdir(save_dir):
-    #     os.makedirs(save_dir)
-    # trained = trained.cpu()
-    # torch.save(trained, save_dir + key + '.pt')
-    # # np.save(save_dir + 'train_preds', train_preds)
-    # np.save(save_dir + 'val_preds', val_preds)
-    # np.savez(save_dir + 'loss_curves', 3,
-    #          np.concatenate([np.array(first_losses)]),
-    #          np.concatenate([np.array(first_accs)]))
-    # plt.plot(np.array(first_accs))
-    # plt.show()
-    # plt.plot(np.array(second_accs))
-    # plt.show()
-    # plt.plot(np.array(third_accs))
-    # plt.show()
