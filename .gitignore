@@ -1,0 +1,15 @@
+*.nev
+*.png
+*.jpg
+*.npy
+*.mat
+*.ITM
+*.pyc
+*.pt
+*.pkl
+analysis/Visualization/
+analysis/Graphs/
+analysis/labeling/
+analysis/a_data/
+data/
+saved_models/
