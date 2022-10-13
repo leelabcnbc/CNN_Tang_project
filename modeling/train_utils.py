@@ -5,13 +5,13 @@ import sys
 from tqdm import tqdm
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
-def array_to_dataloader(x, y, batch_size=128):
+def array_to_dataloader(x, y, batch_size=128, shuffle=False):
     """
     Takes x and y as data and labels; makes dataloaders of them.
     """
     dataset = torch.utils.data.TensorDataset(torch.FloatTensor(x), 
             torch.FloatTensor(y))
-    dataloader = torch.utils.data.DataLoader(dataset, batch_size)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size, shuffle=shuffle)
 
     return dataloader
 

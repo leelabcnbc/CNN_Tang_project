@@ -3,25 +3,29 @@ import torch
 from audtorch.metrics.functional import pearsonr
 import torch.nn as nn
 
+
 def poisson_loss(preds, real):
     """
     Poisson loss, appropriate for neural firing rates.
     Average loss for a batch (assumed to be the first dimension).
     """
-    eps = 1e-6 # for numerical stability
+    eps = 1e-6  # for numerical stability
     return torch.mean(preds - real * torch.log(preds + eps))
 
-def corr_loss(out,y):
+
+def corr_loss(out, y, corr_portion=0, mae_portion=1):
     mae = torch.nn.L1Loss()
-    loss = torch.mean(-pearsonr(out, y, batch_first=False)) + 0.1 * mae(out, y)
+    loss = corr_portion * torch.mean(-pearsonr(out, y, batch_first=False)) + mae_portion * mae(out, y)
     return loss
 
-def mse_w(preds,real):
+
+def mse_w(preds, real):
     criterion = torch.nn.MSELoss(reduction='none')
     y_exp = torch.exp(real)
     loss = criterion(preds, real)
     loss_w = torch.mean(loss * y_exp)
     return loss_w
+
 
 def fev_explained(preds, real, sigma_noise=0):
     """
@@ -33,6 +37,7 @@ def fev_explained(preds, real, sigma_noise=0):
     rss = torch.mean((preds - real) ** 2, dim=0)
     var_y = torch.var(real, dim=0)
     return 1 - ((rss - sigma_noise) / (var_y - sigma_noise))
+
 
 # regularization losses, adapted from Yimeng's code
 def maskcnn_loss_v1_kernel_smoothness(module_list,
@@ -58,6 +63,7 @@ def maskcnn_loss_v1_kernel_smoothness(module_list,
             torch.sum(w_this_conved ** 2, -1) / torch.sum(w_this ** 2, -1))
         sum_list.append(sum_to_add)
     return sum(sum_list)
+
 
 def maskcnn_loss_v1_kernel_group_sparsity(module_list,
                                           scale_list):

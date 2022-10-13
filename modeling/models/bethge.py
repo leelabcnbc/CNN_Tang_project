@@ -145,6 +145,8 @@ class BethgeModel(nn.Module):
         if type(self.fc[0]) is multiFactorizedLinear:
             for b in self.fc[0].bank:
                 nn.init.normal_(b.weight_spatial, std=0.01)
+                #TODO: initialization is zero
+                #nn.init.zeros_(b.weight_spatial)
                 nn.init.normal_(b.weight_feature, std=0.01)
                 nn.init.zeros_(b.bias)
 

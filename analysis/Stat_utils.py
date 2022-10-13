@@ -47,7 +47,7 @@ def get_site_corr(net, device, site):
         VE[neuron] = 1 - np.var(pred1 - val_y) / np.var(val_y)
     return R
 
-def get_tuning_stat(net, device, val_loader, selected_idx, directory, neuron_extra_name, num_neurons, use_vis_rsp = False, vis_directory = '', ):
+def get_tuning_stat(net, device, val_loader, selected_idx, directory, num_neurons, use_vis_rsp = False, vis_directory = '', neuron_extra_name = None):
     prediction = []
     actual = []
     for batch_num, (x, y) in enumerate(tqdm(val_loader)):
@@ -96,7 +96,7 @@ def get_tuning_stat(net, device, val_loader, selected_idx, directory, neuron_ext
         plt.title("corr=" + str(R[neuron]) + " VE=" + str(VE[neuron]))
         plt.legend()
         if neuron_extra_name is None:
-            plt.savefig(directory + str(neuron))
+            plt.savefig(directory + '/' + str(neuron) + '/' + 'tuning_curve')
         else:
             plt.savefig(directory + str(neuron) + '_' + neuron_extra_name[i])
 
