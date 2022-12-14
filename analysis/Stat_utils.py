@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 from skimage.io import imread, imsave
 from modeling.train_utils import array_to_dataloader
+from sklearn.metrics import mean_squared_error
 
 def get_top_imgs(val_imgs, val_rsp, neuron, directory):
     val_rsp_neuron = val_rsp[:, neuron]
@@ -13,10 +14,12 @@ def get_top_imgs(val_imgs, val_rsp, neuron, directory):
     for i, top_img in enumerate(top_imgs):
         imsave(fname=directory + '/' + str(i) + '.jpg', arr=top_img)
 
-def get_site_corr(net, device, site):
-    val_x = np.load('../data/Processed_Tang_data/all_sites_data_prepared/pics_data/val_img_' + site + '.npy')
-    val_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/valRsp_' + site + '.npy')
-    val_x = np.transpose(val_x, (0, 3, 1, 2))
+def get_site_corr(net, device, site, val_x=None, val_y=None):
+    if val_x is None:
+        val_x = np.load('../data/Processed_Tang_data/all_sites_data_prepared/pics_data/val_img_' + site + '.npy')
+        val_x = np.transpose(val_x, (0, 3, 1, 2))
+    if val_y is None:
+        val_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/valRsp_' + site + '.npy')
     num_neurons = val_y.shape[1]
     val_loader = array_to_dataloader(val_x, val_y, batch_size=200)
     prediction = []
@@ -32,6 +35,7 @@ def get_site_corr(net, device, site):
     R = np.zeros(num_neurons)
     VE = np.zeros(num_neurons)
     SR = np.zeros(num_neurons)
+    MSE = np.zeros(num_neurons)
     for neuron in tqdm(range(num_neurons)):
         pred1 = prediction[:, neuron]
         val_y = actual[:, neuron]
@@ -45,7 +49,8 @@ def get_site_corr(net, device, site):
         R[neuron] = c2[0, 1]
         SR[neuron] = spearmanr(pred1, val_y)[0]
         VE[neuron] = 1 - np.var(pred1 - val_y) / np.var(val_y)
-    return R
+        MSE[neuron] = mean_squared_error(val_y,pred1)
+    return R, MSE
 
 def get_tuning_stat(net, device, val_loader, selected_idx, directory, num_neurons, use_vis_rsp = False, vis_directory = '', neuron_extra_name = None):
     prediction = []

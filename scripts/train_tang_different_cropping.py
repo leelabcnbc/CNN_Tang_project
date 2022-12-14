@@ -1,0 +1,140 @@
+### 040320 -- basic data-driven CNN modeling on all batch data
+### partially for my course project, but useful for us too
+### not doing a lot of hyperparameter search; going with known
+### reasonable defaults
+import torch
+import numpy as np
+import pickle as pkl
+import sys
+import os
+
+sys.path.append('../')
+from functools import partial
+import scipy.stats
+
+from modeling.losses import *
+from modeling.models.bethge import BethgeModel
+from modeling.models.utils import num_params
+from modeling.train_utils import array_to_dataloader, simple_train_loop, train_loop_with_scheduler
+
+# general things
+DATASET = 'both'
+CORR_THRESHOLD = 0.7
+
+# get and setup the data
+downsample = 4
+num_samples = 49000
+
+
+def random_permute(set_x, set_y):
+    p = np.random.permutation(num_samples)
+    x_new = np.copy(set_x)
+    y_new = np.copy(set_y)
+    for i in range(num_samples):
+        x_new[i] = set_x[p[i]]
+        y_new[i] = set_y[p[i]]
+    return x_new, y_new
+
+
+site = 'm1s3'
+
+# set up network/training params
+
+
+lr = 1e-3
+scale = 2e-3
+smooth = 3e-6
+
+# run a few models, not just one
+sizes = [15, 25, 35]
+for size in sizes:
+    # for saving
+    # key = f'c{channels}_l{num_layers}_i{input_size}_o{output_size}_fk{first_k}_lk{later_k}_p{pool_size}_f{factorized}_n{num_maps}__lr{lr}_sc{scale}_sm{smooth}___sd{sd}'
+
+    num_epochs = 50
+    print_every = 2
+
+    train_x = np.load(f'../data/cropped_tang_data/train_img_site_{site}_size_{size}.npy')
+    val_x = np.load(f'../data/cropped_tang_data/val_img_site_{site}_size_{size}.npy')
+    train_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/trainRsp_' + site + '.npy')
+    val_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/valRsp_' + site + '.npy')
+
+    train_x = np.reshape(train_x, (train_x.shape[0], 1, 50, 50))
+    val_x = np.reshape(val_x, (val_x.shape[0], 1, 50, 50))
+
+    channels = 256
+    num_layers = 9
+    input_size = 50
+    first_k = 9
+    later_k = 3
+    pool_size = 2
+    factorized = True
+    num_maps = 1
+    output_size = val_y.shape[1]
+
+
+    # define functions for use in the training loop
+    def n_poisson_loss(p, y, n):
+        return corr_loss(p, y)
+
+
+    def maskcnn_loss(p, y, n, scale=8e-5, smooth=3e-6):
+        mse = corr_loss(p, y)
+
+        readout_sparsity = 0
+        for i in range(len(n.fc[0].bank)):
+            spatial_map_flat = n.fc[0].bank[i].weight_spatial.view(
+                n.fc[0].bank[i].weight_spatial.size(0), -1)
+            feature_map_flat = n.fc[0].bank[i].weight_feature.view(
+                n.fc[0].bank[i].weight_feature.size(0), -1)
+
+            readout_sparsity += scale * torch.mean(
+                torch.sum(torch.abs(spatial_map_flat), 1) *
+                torch.sum(torch.abs(feature_map_flat), 1))
+
+        readout_sparsity /= len(n.fc[0].bank)
+
+        kern_smoothness = maskcnn_loss_v1_kernel_smoothness(
+            [n.conv[0][0]], [smooth], torch.device('cuda'))
+
+        return mse + readout_sparsity + kern_smoothness
+
+
+    # lock in the hyperparams outside of the training loop
+    maskcnn_loss = partial(maskcnn_loss, scale=scale, smooth=smooth)
+
+
+    def stopper(train_losses, val_losses):
+        patience = 10
+        if len(val_losses) >= max(patience, 100):
+            last_few = val_losses[-patience:]
+            diffs = np.diff(last_few)
+
+            if all(diffs >= 0) or last_few[-1] > 3.0:
+                return False
+
+        return True
+
+
+    cur_x = train_x
+    cur_y = train_y
+    print('length of set:' + str(len(cur_x)))
+    # set up model and training parameters
+    net = BethgeModel(channels=256, num_layers=9, input_size=input_size,
+                      output_size=output_size, first_k=first_k, later_k=later_k,
+                      input_channels=1, pool_size=pool_size, factorized=True,
+                      num_maps=num_maps).cuda()
+
+    train_loader = array_to_dataloader(cur_x, cur_y, batch_size=50, shuffle=True)
+    val_loader = array_to_dataloader(val_x, val_y, batch_size=50)
+
+    print(f'model has {num_params(net)} params')
+    optimizer = torch.optim.Adam(net.parameters(), lr=lr)
+
+    # now train, for three stages (learning rates)
+    trained, first_losses, first_accs = train_loop_with_scheduler(train_loader, val_loader, net,
+                                                                  optimizer, maskcnn_loss, n_poisson_loss,
+                                                                  num_epochs, print_every,
+                                                                  stop_criterion=stopper, device='cuda',
+                                                                  save_location=site + "_size_" + str(size) + "_model",
+                                                                  loss_require_net=True)

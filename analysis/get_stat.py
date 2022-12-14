@@ -7,14 +7,15 @@ from modeling.train_utils import array_to_dataloader
 from scipy.stats import spearmanr
 from scripts.visualize_SharedCore import visualize_neuron
 import os
+
 nb_validation_samples = 1000
 nb_training_samples = 49000
 train_x = np.load('../data/Processed_Tang_data/all_sites_data_prepared/pics_data/train_img_m2s1.npy')
 val_x = np.load('../data/Processed_Tang_data/all_sites_data_prepared/pics_data/val_img_m2s1.npy')
 train_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/trainRsp_m2s1.npy')
 val_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/valRsp_m2s1.npy')
-train_x =  np.transpose(train_x, (0, 3, 1, 2))
-val_x =  np.transpose(val_x, (0, 3, 1, 2))
+train_x = np.transpose(train_x, (0, 3, 1, 2))
+val_x = np.transpose(val_x, (0, 3, 1, 2))
 batch_size = 2048
 num_neurons = 299
 
@@ -36,7 +37,7 @@ net = BethgeModel(channels=channels, num_layers=num_layers, input_size=input_siz
                   num_maps=num_maps).cuda()
 
 net.to(device)
-net.load_state_dict(torch.load('../saved_models/C_'+str(channels)+'_L_'+str(num_layers)+'_model_shared_core'))
+net.load_state_dict(torch.load('../saved_models/C_' + str(channels) + '_L_' + str(num_layers) + '_model_shared_core'))
 
 val_loader = array_to_dataloader(val_x, val_y, batch_size=200)
 train_loader = array_to_dataloader(train_x, train_y, batch_size=200)
@@ -65,7 +66,6 @@ with torch.no_grad():
         # vis_img /= (vis_img.max() - vis_img.min())
         # vis_rsp = net(vis_img).cpu().numpy()
 
-
         pred1 = prediction[:, neuron]
         val_y = actual[:, neuron]
         y_arg = np.argsort(val_y)
@@ -87,12 +87,13 @@ with torch.no_grad():
         # plt.savefig('Graphs/test/' + str(neuron) + 'tuning')
         # plt.show()
 
-    #selected_idx_SR = np.argsort(SR)[::-1]
-    #np.save('selected_idx_SR', selected_idx_SR)
+    # selected_idx_SR = np.argsort(SR)[::-1]
+    # np.save('selected_idx_SR', selected_idx_SR)
     print(R)
     print(np.mean(SR))
     print(np.mean(R))
     print(np.mean(VE))
+
 
 def make_dir_try(dir):
     try:
@@ -100,7 +101,10 @@ def make_dir_try(dir):
         print("Directory '%s' created successfully" % dir)
     except OSError as error:
         print("Directory '%s' can not be created" % dir)
-directory = 'A:/school/College_Junior/research/CNN_Tang_project/analysis/Visualization/'+str(channels)+'_'+str(num_layers)
+
+
+directory = 'A:/school/College_Junior/research/CNN_Tang_project/analysis/Visualization/' + str(channels) + '_' + str(
+    num_layers)
 make_dir_try(directory)
 
 top_idx = np.argsort(R)

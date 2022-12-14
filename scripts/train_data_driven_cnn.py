@@ -1,10 +1,13 @@
-
+### 040320 -- basic data-driven CNN modeling on all batch data
+### partially for my course project, but useful for us too
+### not doing a lot of hyperparameter search; going with known
+### reasonable defaults
 import torch
 import numpy as np
 import pickle as pkl
 import sys
 import os
-
+sys.path.append('../')
 from functools import partial
 import scipy.stats
 
@@ -31,14 +34,14 @@ def random_permute(set_x, set_y):
         y_new[i] = set_y[p[i]]
     return x_new, y_new
 
-site = 'm2s1'
+site = 'm1s3'
 
 train_x = np.load('../data/Processed_Tang_data/all_sites_data_prepared/pics_data/train_img_'+site+'.npy')
 val_x = np.load('../data/Processed_Tang_data/all_sites_data_prepared/pics_data/val_img_'+site+'.npy')
 train_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/trainRsp_'+site+'.npy')
 val_y = np.load('../data/Processed_Tang_data/all_sites_data_prepared/New_response_data/valRsp_'+site+'.npy')
 
-if site == 'm2s1' or site == 'm2s2':
+if site == 'm1s1' or site == 'm2s2':
     slicea = list(range(5000))
     sliceb = list(range(10000,train_x.shape[0]))
     slice = slicea + sliceb
@@ -60,11 +63,11 @@ output_size = val_y.shape[1]
 
 
 lr = 1e-3
-scale = 8e-4
+scale = 2e-3
 smooth = 3e-6
 
 # run a few models, not just one
-num_seeds = 1
+num_seeds = 5
 for sd in range(num_seeds):
     # for saving
     key = f'c{channels}_l{num_layers}_i{input_size}_o{output_size}_fk{first_k}_lk{later_k}_p{pool_size}_f{factorized}_n{num_maps}__lr{lr}_sc{scale}_sm{smooth}___sd{sd}'
@@ -74,12 +77,12 @@ for sd in range(num_seeds):
 
 
     # define functions for use in the training loop
-    def validation_loss(p, y, n):
-        return corr_loss(p, y, corr_portion=1, mae_portion=1)
+    def n_poisson_loss(p, y, n):
+        return corr_loss(p, y)
 
 
     def maskcnn_loss(p, y, n, scale=8e-5, smooth=3e-6):
-        mse = corr_loss(p, y, corr_portion=1, mae_portion=1)
+        mse = corr_loss(p, y)
 
         readout_sparsity = 0
         for i in range(len(n.fc[0].bank)):
@@ -116,10 +119,10 @@ for sd in range(num_seeds):
         return True
 
 
-    num_laps = 1
+    num_laps = 10
     for i in range(num_laps):
-        cur_x = train_x[:round(num_samples*((i+1)/num_laps))]
-        cur_y = train_y[:round(num_samples*((i+1)/num_laps))]
+        cur_x = train_x[:round(num_samples*(i+1)/num_laps)]
+        cur_y = train_y[:round(num_samples*(i+1)/num_laps)]
         print('length of set:' + str(len(cur_x)))
         # set up model and training parameters
         net = BethgeModel(channels=256, num_layers=9, input_size=input_size,
@@ -127,16 +130,15 @@ for sd in range(num_seeds):
                           input_channels=1, pool_size=pool_size, factorized=True,
                           num_maps=num_maps).cuda()
 
-        train_loader = array_to_dataloader(cur_x, cur_y, batch_size=300, shuffle=True)
-        val_loader = array_to_dataloader(val_x, val_y, batch_size=300)
+        train_loader = array_to_dataloader(cur_x, cur_y, batch_size=50, shuffle=True)
+        val_loader = array_to_dataloader(val_x, val_y, batch_size=50)
 
         print(f'model has {num_params(net)} params')
         optimizer = torch.optim.Adam(net.parameters(), lr=lr)
 
         # now train, for three stages (learning rates)
         trained, first_losses, first_accs = train_loop_with_scheduler(train_loader, val_loader, net,
-                                                                      optimizer, maskcnn_loss, validation_loss,
+                                                                      optimizer, maskcnn_loss, n_poisson_loss,
                                                                       num_epochs, print_every,
                                                                       stop_criterion=stopper, device='cuda',
-                                                                      save_location= site + "_" + str(i) + "_model_mae_corr_version_"+ str(sd), loss_require_net=True)
-
+                                                                      save_location= site + "_" + str(i) + "_model_version_"+ str(sd), loss_require_net=True)
