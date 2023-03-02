@@ -105,9 +105,22 @@ def get_tuning_stat(net, device, val_loader, selected_idx, directory, num_neuron
         else:
             plt.savefig(directory + str(neuron) + '_' + neuron_extra_name[i])
 
-    # selected_idx_SR = np.argsort(SR)[::-1]
-    # np.save('selected_idx_SR', selected_idx_SR)
-    # print(SR)
-    # print(np.mean(SR))
-    # print(np.mean(R))
-    # print(np.mean(VE))
+def get_rsp_data(net, device, site, train_x=None, train_y=None):
+    if train_x is None:
+        train_x = np.load('D:/school/research/CNN_Tang_project/data/Processed_Tang_data/all_sites_data_prepared/pics_data/train_img_' + site + '.npy')
+        train_x = np.transpose(train_x, (0, 3, 1, 2))
+    if train_y is None:
+        train_y = np.load('D:/school/research/CNN_Tang_project/data/Processed_Tang_data/all_sites_data_prepared/New_response_data/trainRsp_' + site + '.npy')
+    num_neurons = train_y.shape[1]
+    val_loader = array_to_dataloader(train_x, train_y, batch_size=200)
+    prediction = []
+    actual = []
+    for batch_num, (x, y) in enumerate(tqdm(val_loader)):
+        x, y = x.to(device), y.to(device)
+        outputs = net(x).detach().cpu().numpy()
+        prediction.extend(outputs)
+        actual.extend(y.detach().cpu().numpy())
+
+    prediction = np.stack(prediction)
+    actual = np.stack(actual)
+    return prediction,actual
