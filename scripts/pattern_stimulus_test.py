@@ -121,3 +121,85 @@ def get_label_pattern_stimuli (data, PS_labels, batch_size, device, net, stacked
         all_neuron_labels[iter] = neuron_labels
     return all_neuron_labels, top_indexes, top_rsp
 
+
+def majority_num(neuron, top_idxs, top_num, neuron_all_rsp, PS_labels_all):
+    max_idx = top_idxs[0]
+    max_rsp = neuron_all_rsp[max_idx, neuron]
+    if PS_labels_all[max_idx] < 2:
+        return PS_labels_all[max_idx]
+    for idx in top_idxs[:top_num]:
+        if not PS_labels_all[idx] == PS_labels_all[max_idx]:
+            if PS_labels_all[idx] < 2 and  neuron_all_rsp[idx, neuron] >= 0.8*max_rsp :
+                return PS_labels_all[idx]
+            else:
+                return 6
+    return PS_labels_all[max_idx]
+def get_label_pattern_stimuli_Gale (neuron_all_rsp, PS_labels) :
+
+
+    top_indexes = np.argsort(neuron_all_rsp, axis=0)[::-1]
+    top_rsp = np.sort(neuron_all_rsp, axis=0)[::-1]
+
+    top_indexes = np.transpose(top_indexes)
+    top_rsp = np.transpose(top_rsp)
+
+    num_iters = 6
+    all_neuron_labels = np.full((num_iters, top_indexes.shape[0]), -1)
+    label_names = ['SS', 'EB', 'CN', 'CV', 'CRS', 'Other', 'MC']
+
+    selected_idx = range(neuron_all_rsp.shape[1])
+
+    for iter in tqdm(range(num_iters)):
+        top_num = 10-iter
+        neuron_labels = np.full(top_indexes.shape[0], -1)
+        for neuron in selected_idx:
+            neuron_top = top_indexes[neuron]
+            all_labels = []
+            for img_idx in neuron_top:
+                label = PS_labels[img_idx]
+                all_labels.append(label)
+            majority = majority_num(neuron, neuron_top, top_num, neuron_all_rsp, PS_labels)
+            neuron_labels[neuron] = majority
+        all_neuron_labels[iter] = neuron_labels
+    return all_neuron_labels, top_indexes, top_rsp
+
+
+def majority_num_NO_EB(neuron, top_idxs, top_num, neuron_all_rsp, PS_labels_all):
+    max_idx = top_idxs[0]
+    max_rsp = neuron_all_rsp[max_idx, neuron]
+    if PS_labels_all[max_idx] < 2:
+        return PS_labels_all[max_idx]
+    for idx in top_idxs[:top_num]:
+        if not PS_labels_all[idx] == PS_labels_all[max_idx]:
+            if PS_labels_all[idx] == 0 and  neuron_all_rsp[idx, neuron] >= 0.8*max_rsp :
+                return PS_labels_all[idx]
+            else:
+                return 6
+    return PS_labels_all[max_idx]
+def get_label_pattern_stimuli_Gale_NO_EB (neuron_all_rsp, PS_labels) :
+    top_indexes = np.argsort(neuron_all_rsp, axis=0)[::-1]
+    top_rsp = np.sort(neuron_all_rsp, axis=0)[::-1]
+
+    top_indexes = np.transpose(top_indexes)
+    top_rsp = np.transpose(top_rsp)
+
+    num_iters = 6
+    all_neuron_labels = np.full((num_iters, top_indexes.shape[0]), -1)
+    label_names = ['SS', 'EB', 'CN', 'CV', 'CRS', 'Other', 'MC']
+
+    selected_idx = range(neuron_all_rsp.shape[1])
+
+    for iter in tqdm(range(num_iters)):
+        top_num = 10 - iter
+        neuron_labels = np.full(top_indexes.shape[0], -1)
+        for neuron in selected_idx:
+            neuron_top = top_indexes[neuron]
+            all_labels = []
+            for img_idx in neuron_top:
+                label = PS_labels[img_idx]
+                all_labels.append(label)
+            majority = majority_num_NO_EB(neuron, neuron_top, top_num, neuron_all_rsp, PS_labels)
+            neuron_labels[neuron] = majority
+        all_neuron_labels[iter] = neuron_labels
+    return all_neuron_labels, top_indexes, top_rsp
+

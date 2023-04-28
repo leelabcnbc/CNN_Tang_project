@@ -2,18 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf4b7698-f7ae-4922-b517-ba1572692c21" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Reconstruction/reconstruction_transform_data_tang.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis/SharedCoreExperiments.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/Response_matching_recon.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/fake_data_generator.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/vanilla_vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/vanilla_vae.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reconstruction/Reconstruction_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/Reconstruction_testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reconstruction/artificial_reconstruction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/artificial_reconstruction.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/Stat_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/Stat_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analysis/test_sharedcore.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/test_sharedcore.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/dictionary_generation_cosyne.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/dictionary_generation_cosyne.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/pattern_stimulus_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pattern_stimulus_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,16 +69,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/school/research/CNN_Tang_project",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/school/College_Senior&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\school\research\CNN_Tang_project\Reconstruction" />
@@ -328,6 +330,21 @@
       <workItem from="1674749316894" duration="604000" />
       <workItem from="1677001909116" duration="963000" />
       <workItem from="1677600751222" duration="11753000" />
+      <workItem from="1679363032065" duration="73000" />
+      <workItem from="1679808834653" duration="989000" />
+      <workItem from="1679866592918" duration="21000" />
+      <workItem from="1679950699862" duration="7181000" />
+      <workItem from="1680019209844" duration="12806000" />
+      <workItem from="1680553072206" duration="8817000" />
+      <workItem from="1680619416099" duration="19864000" />
+      <workItem from="1680714791220" duration="610000" />
+      <workItem from="1680894976755" duration="3106000" />
+      <workItem from="1681248504442" duration="3024000" />
+      <workItem from="1681345072002" duration="3795000" />
+      <workItem from="1681829625968" duration="14232000" />
+      <workItem from="1682375097133" duration="6444000" />
+      <workItem from="1682443135848" duration="3339000" />
+      <workItem from="1682646506903" duration="6277000" />
     </task>
     <servers />
   </component>
@@ -404,45 +421,17 @@
           <line>402</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook://D:/school/research/CNN_Tang_project/scripts/Response_matching_recon.ipynb</url>
+          <line>381</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook://D:/school/research/CNN_Tang_project/analysis/SharedCoreExperiments.ipynb</url>
+          <line>48</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$.coverage" NAME=" Coverage Results" MODIFIED="1665020614984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/tests" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$artificial_reconstruction_selective.coverage" NAME="artificial_reconstruction_selective Coverage Results" MODIFIED="1668105644746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/get_stat_py$.coverage" NAME=" Coverage Results" MODIFIED="1659678720953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/aggregate_neuron_data_py$get_sample_size_data.coverage" NAME="get_sample_size_data Coverage Results" MODIFIED="1661140142728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$aggregate_neuron_data.coverage" NAME="aggregate_neuron_data Coverage Results" MODIFIED="1658734254850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/surround_supression_test_ipynb$artificial_reconstruction_selective.coverage" NAME="artificial_reconstruction_selective Coverage Results" MODIFIED="1669235355197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$rsp_dnn.coverage" NAME="rsp_dnn Coverage Results" MODIFIED="1665048907505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$train_data_driven_cnn.coverage" NAME="train_data_driven_cnn Coverage Results" MODIFIED="1659363905027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/artificial_reconstruction_selective_py$reconstruction_transform_data_tang.coverage" NAME="reconstruction_transform_data_tang Coverage Results" MODIFIED="1674694124606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$Compare_vis_data.coverage" NAME="Compare_vis_data Coverage Results" MODIFIED="1656659676375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/aggregate_neuron_data_py$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1661131946502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../../software/anaconda/Lib/site-packages/torch/autograd" />
-    <SUITE FILE_PATH="coverage/aggregate_neuron_data_py$labeling_mlp.coverage" NAME="labeling_mlp Coverage Results" MODIFIED="1661643995312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/CNN_Tang_project$Compare_vis_data.coverage" NAME="Compare_vis_data Coverage Results" MODIFIED="1656573227541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$visualize_shared_core1.coverage" NAME="visualize_shared_core1 Coverage Results" MODIFIED="1657209711201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../optimization-generation-master" />
-    <SUITE FILE_PATH="coverage/CNN_Tang_project$compare_visualization_rsp.coverage" NAME="compare_visualization_rsp Coverage Results" MODIFIED="1656574971460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/surround_supression_test_ipynb$reconstruction_transform_data.coverage" NAME="reconstruction_transform_data Coverage Results" MODIFIED="1669231064237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$reconstruction_transform_data.coverage" NAME="reconstruction_transform_data Coverage Results" MODIFIED="1668105329998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$visualize_SharedCore.coverage" NAME="visualize_SharedCore Coverage Results" MODIFIED="1657265140613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$tang_data_transform.coverage" NAME="tang_data_transform Coverage Results" MODIFIED="1668472631166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/CNN_Tang_project$get_stat.coverage" NAME="get_stat Coverage Results" MODIFIED="1656561511881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$get_curve.coverage" NAME="get_curve Coverage Results" MODIFIED="1663219778119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$get_stat.coverage" NAME="get_stat Coverage Results" MODIFIED="1659363608523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$train_data_driven_cnn.coverage" NAME="train_data_driven_cnn Coverage Results" MODIFIED="1663775828452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/get_stat_py$visualize_SharedCore.coverage" NAME="visualize_SharedCore Coverage Results" MODIFIED="1659493652148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$labeling_mlp.coverage" NAME="labeling_mlp Coverage Results" MODIFIED="1657849375314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$Stat_utils.coverage" NAME="Stat_utils Coverage Results" MODIFIED="1663834137863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/aggregate_neuron_data_py$get_stat_compare.coverage" NAME="get_stat_compare Coverage Results" MODIFIED="1662096473768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$aggregate_neuron_data.coverage" NAME="aggregate_neuron_data Coverage Results" MODIFIED="1664401186931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/get_stat_py$get_stat.coverage" NAME="get_stat Coverage Results" MODIFIED="1659494186856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/preprocess_functions_py$analyze_model.coverage" NAME="analyze_model.ipynb Coverage Results" MODIFIED="1658368486970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$image_VAE.coverage" NAME="image_VAE Coverage Results" MODIFIED="1665030889567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$run.coverage" NAME="run Coverage Results" MODIFIED="1665020134459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction/PyTorch_VAE" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$compare_visualization_rsp.coverage" NAME="compare_visualization_rsp Coverage Results" MODIFIED="1656664554608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
-    <SUITE FILE_PATH="coverage/CNN_Tang_project$pack_rsp.coverage" NAME="pack_rsp Coverage Results" MODIFIED="1656573229989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$pack_rsp.coverage" NAME="pack_rsp Coverage Results" MODIFIED="1656656679534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$pattern_stimulus_test.coverage" NAME="pattern_stimulus_test Coverage Results" MODIFIED="1656666908160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>
