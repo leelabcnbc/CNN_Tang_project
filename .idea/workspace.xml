@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf4b7698-f7ae-4922-b517-ba1572692c21" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/analysis/SharedCoreExperiments.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/Response_matching_recon.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/fake_data_generator.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/vanilla_vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/models/vanilla_vae.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/test_sharedcore.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/test_sharedcore.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/dictionary_generation_cosyne.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/dictionary_generation_cosyne.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/pattern_stimulus_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pattern_stimulus_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/Response_matching_recon.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Response_matching_recon.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization_utils/optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization_utils/optimizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,6 +339,7 @@
       <workItem from="1682375097133" duration="6444000" />
       <workItem from="1682443135848" duration="3339000" />
       <workItem from="1682646506903" duration="6277000" />
+      <workItem from="1683586353952" duration="12193000" />
     </task>
     <servers />
   </component>
@@ -423,13 +418,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
           <url>notebook://D:/school/research/CNN_Tang_project/scripts/Response_matching_recon.ipynb</url>
-          <line>381</line>
+          <line>401</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
           <url>notebook://D:/school/research/CNN_Tang_project/analysis/SharedCoreExperiments.ipynb</url>
           <line>48</line>
           <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook://D:/school/research/CNN_Tang_project/scripts/Response_matching_recon.ipynb</url>
+          <line>41</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
