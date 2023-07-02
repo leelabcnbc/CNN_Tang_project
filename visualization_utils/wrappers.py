@@ -9,7 +9,7 @@ import numpy as np
 from .losses import *
 from .utils import *
 from functools import partial
-from .optimizer import Optimizer
+from .optimizer import Optimizer, GANOptimzier
 from skimage.io import imread, imsave
 from torchvision.models import (alexnet, resnet50, vgg16)
 
@@ -80,6 +80,30 @@ def visualize(network, layer, idx, img_shape=(3, 224, 224),
     return optimizer.optimize(rand_img, target, max_iter=max_iter,
                               lr=lr, sigma=sigma, debug=debug, early_stopper=early_stopper)
 
+
+def visualize_gan(network, gan,shape=(1,128),
+              init_range=(-1, 1), max_iter=400, lr=1,
+              min_loss_val=None, target=None, debug=False):
+    """
+    Returns:
+
+    optimized image
+    loss for the last iteration
+    """
+    # partial application, since the index can't be passed in optimizer code
+
+    loss_func = output_loss
+    optimizer = GANOptimzier(gan, network, loss_func)
+
+    if min_loss_val is not None:
+        early_stopper = lambda losses: losses[-1] < min_loss_val
+    else:
+        early_stopper = None
+
+    # now start optimization
+    rand_vector = torch_rand_range(shape, init_range).unsqueeze(0).cuda()
+    return optimizer.optimize(rand_vector, target, max_iter=max_iter,
+                              lr=lr, debug=debug, early_stopper=early_stopper)
 
 def gen_one_image(network, layer, image, noise_level,
                   loss_func, constant_area=0, max_iter=1000,

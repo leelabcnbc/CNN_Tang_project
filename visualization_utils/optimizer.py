@@ -1,8 +1,9 @@
 import torch
 import numpy as np
 from .utils import *
-import cv2
-
+from torchvision.transforms import CenterCrop,Resize
+from skimage.draw import disk
+from tqdm import tqdm
 class Optimizer():
     """
     Optimize an image to produce some result in a deep net.
@@ -180,6 +181,8 @@ class Optimizer():
         forw_hook.remove()
 
         return new_img, losses, best_loss
+<<<<<<< Updated upstream
+=======
 
 
 class GANOptimzier():
@@ -187,7 +190,7 @@ class GANOptimzier():
     Optimize an image to produce some result in a deep net.
     """
 
-    def __init__(self, gan, net, layer, loss_func, first_layer=None):
+    def __init__(self, gan, net, loss_func, first_layer=None):
         """
         Parameters:
 
@@ -204,17 +207,38 @@ class GANOptimzier():
 
         self.gan = gan
         self.net = net
-        self.layer = layer
         self.loss_func = loss_func
         self.first_layer = first_layer
-
+        self.rr, self.cc = disk((25, 25), 25, shape=(50,50))
         # will only define hooks during optimization so they can be removed
-        self.acts = []
         self.grads = []
 
-    def optimize(self, image, target, constant_area=None, max_iter=1000,
-                 lr=np.linspace(5, 0.5, 1000), clip_image=False,
-                 grayscale=False, sigma=0, debug=False, early_stopper=None):
+    def partial_grating(self,img,gray=0.5,
+                        background=None):
+        """
+        put an aperture over a sine-wave grating image
+        """
+        # outside aperture will be gray
+        # unless it's something like a diff orientation
+        if background is None:
+            new_img = torch.full(img.shape, fill_value=gray).to('cuda')
+        else:
+            new_img = background
+        new_img[self.rr, self.cc] = img[self.rr, self.cc]
+        return new_img
+
+    def image_transform(self,img):
+        x = img[0]
+        x = (x + 1) / 2
+        x = x[0] * 299 / 1000 + x[1] * 587 / 1000 + x[2] * 114 / 1000
+        x = CenterCrop(128)(x)
+        x = torch.reshape(x, (1, 128, 128))
+        x = Resize(50, antialias=True)(x)[0]
+        x = self.partial_grating(x, gray=0.0)
+        return torch.reshape(x, (1,1,x.shape[0],x.shape[1]))
+    def optimize(self, input,target,max_iter=1000,
+                 lr=np.linspace(5, 0.5, 1000),
+                 debug=False, early_stopper=None):
         """
         Parameters:
 
@@ -222,9 +246,6 @@ class GANOptimzier():
         modified from
 
         target: target activation, to be passed into loss_func
-
-        constant_area: indices such that image[0:1, 2:3, :] stays
-        constant each iteration of gradient ascent
 
         max_iter: maximum number of iterations to run
 
@@ -248,36 +269,23 @@ class GANOptimzier():
         optimized image
         loss for the last iteration
         """
-        image.requires_grad_(False)
-        new_img = torch.tensor(image, requires_grad=True)
+        input.requires_grad_(False)
+        new_input = torch.tensor(input, requires_grad=True)
+        print(new_input.shape)
         # change it to an array even if it's constant, for the iterating code
         if isinstance(lr, int) or isinstance(lr, float):
             lr = [lr] * max_iter
 
-        if isinstance(sigma, float) or isinstance(sigma, int):
-            sigma = [sigma] * max_iter
-
-        # want the actual, atomic first layer object for hooking
-        if self.first_layer is None:
-            children = [child for child in self.net.modules()
-                        if len(list(child.children())) == 0]
-            first_layer = children[0]
-            print(first_layer)
-        else:
-            first_layer = self.first_layer
-
         # set up hooks
-
-        forw_hook = self.layer.register_forward_hook(
-            lambda m, i, o: self.acts.append(o))
-
         best_loss = 500
         # now do gradient ascent
         losses = []
-        for i in range(max_iter):
+        for i in tqdm(range(max_iter)):
             # get gradient
-            _ = self.net(new_img)
-            loss = self.loss_func(self.acts[0], target, new_img)
+            image = self.gan(z=new_input)
+            new_img = self.image_transform(image)
+            out = self.net(new_img)
+            loss = self.loss_func(out, target, new_img)
 
             if (loss < best_loss):
                 best_img = torch.clone(new_img)
@@ -292,17 +300,13 @@ class GANOptimzier():
             # all processing of gradient was done in loss_func
             # even momentum if applicable; none is done here
             with torch.no_grad():
-                new_img.data = new_img.data - lr[i] * new_img.grad
-                if clip_image:
-                    new_img.data = clip_img(new_img.data)
-            self.acts.clear()
+                new_input.data = new_input.data - lr[i] * new_input.grad
+                torch.clamp(new_input.data, -1, 1)
             self.grads.clear()
 
             if early_stopper is not None and early_stopper(losses):
                 print(f'early stopping at iter {i}')
                 break
 
-        # avoid side effects
-        forw_hook.remove()
-
-        return new_img, losses, best_loss
+        return new_input, losses, best_loss
+>>>>>>> Stashed changes
