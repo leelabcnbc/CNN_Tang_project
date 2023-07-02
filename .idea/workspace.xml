@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="bf4b7698-f7ae-4922-b517-ba1572692c21" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/GAN_recon.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/GAN_recon_tests.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CNN_Tang_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CNN_Tang_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
+=======
+      <change beforePath="$PROJECT_DIR$/scripts/Response_matching_recon.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Response_matching_recon.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization_utils/optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization_utils/optimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization_utils/wrappers.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization_utils/wrappers.py" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +74,21 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< Updated upstream
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/Softwares/Anaconda/envs/Neural_learning",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+=======
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "F:/Repos/vipriors-challenges-toolkit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> Stashed changes
   }
 }]]></component>
   <component name="RecentsManager">
@@ -70,8 +96,35 @@
       <recent name="A:\school\College_Junior\research\CNN_Tang_project\Reconstruction" />
     </key>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Python.rsp_dnn">
     <configuration name="aggregate_neuron_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+  <component name="RunManager" selected="Python.GAN_recon">
+    <configuration name="GAN_recon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CNN_Tang_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/GAN_recon.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+>>>>>>> Stashed changes
       <module name="CNN_Tang_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,6 +190,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CNN_Tang_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -181,6 +235,15 @@
         <item itemvalue="Python tests.Python tests for test_vae.TestVAE" />
         <item itemvalue="Python.run" />
         <item itemvalue="Python.aggregate_neuron_data" />
+=======
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.GAN_recon" />
+        <item itemvalue="Python.reconstruction_transform_data_tang" />
+        <item itemvalue="Python.artificial_reconstruction_selective" />
+        <item itemvalue="Python.reconstruction_transform_data" />
+        <item itemvalue="Python.tang_data_transform" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
@@ -255,6 +318,59 @@
       <workItem from="1665015300856" duration="19871000" />
       <workItem from="1665076695654" duration="5081000" />
       <workItem from="1665444930536" duration="903000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1666852552131" duration="5190000" />
+      <workItem from="1666892430710" duration="6613000" />
+      <workItem from="1667451149778" duration="14231000" />
+      <workItem from="1667484709474" duration="5045000" />
+      <workItem from="1667568161631" duration="1763000" />
+      <workItem from="1668022251985" duration="16331000" />
+      <workItem from="1668065006929" duration="348000" />
+      <workItem from="1668100288714" duration="8563000" />
+      <workItem from="1668451133225" duration="9504000" />
+      <workItem from="1668540130785" duration="8858000" />
+      <workItem from="1668656113083" duration="3451000" />
+      <workItem from="1668693260722" duration="12141000" />
+      <workItem from="1668736607793" duration="200000" />
+      <workItem from="1668983759045" duration="7274000" />
+      <workItem from="1669056460576" duration="14799000" />
+      <workItem from="1669093656366" duration="854000" />
+      <workItem from="1669131259227" duration="11561000" />
+      <workItem from="1669143723472" duration="27704000" />
+      <workItem from="1669218644890" duration="3291000" />
+      <workItem from="1669222763424" duration="16536000" />
+      <workItem from="1669243286106" duration="22496000" />
+      <workItem from="1669267724347" duration="3073000" />
+      <workItem from="1670537254545" duration="1086000" />
+      <workItem from="1670622897092" duration="2456000" />
+      <workItem from="1674684001081" duration="6869000" />
+      <workItem from="1674697602282" duration="2167000" />
+      <workItem from="1674749316894" duration="604000" />
+      <workItem from="1677001909116" duration="963000" />
+      <workItem from="1677600751222" duration="11753000" />
+      <workItem from="1679363032065" duration="73000" />
+      <workItem from="1679808834653" duration="989000" />
+      <workItem from="1679866592918" duration="21000" />
+      <workItem from="1679950699862" duration="7181000" />
+      <workItem from="1680019209844" duration="12806000" />
+      <workItem from="1680553072206" duration="8817000" />
+      <workItem from="1680619416099" duration="19864000" />
+      <workItem from="1680714791220" duration="610000" />
+      <workItem from="1680894976755" duration="3106000" />
+      <workItem from="1681248504442" duration="3024000" />
+      <workItem from="1681345072002" duration="3795000" />
+      <workItem from="1681829625968" duration="14232000" />
+      <workItem from="1682375097133" duration="6444000" />
+      <workItem from="1682443135848" duration="3339000" />
+      <workItem from="1682646506903" duration="6277000" />
+      <workItem from="1683586353952" duration="12193000" />
+      <workItem from="1687786746901" duration="8333000" />
+      <workItem from="1687804048691" duration="2124000" />
+      <workItem from="1687806211096" duration="3715000" />
+      <workItem from="1687825931331" duration="4212000" />
+      <workItem from="1687948977009" duration="81000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -305,6 +421,19 @@
           <line>42</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+<<<<<<< Updated upstream
+=======
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analysis/surround_supression_utils.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/visualization_utils/optimizer.py</url>
+          <line>300</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+>>>>>>> Stashed changes
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
           <url>notebook://A:/school/College_Junior/research/CNN_Tang_project/analysis/Receptive_field_test.ipynb</url>
           <line>382</line>
@@ -319,6 +448,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+<<<<<<< Updated upstream
     <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$.coverage" NAME=" Coverage Results" MODIFIED="1665020614984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Reconstruction/PyTorch_VAE/tests" />
     <SUITE FILE_PATH="coverage/get_stat_py$.coverage" NAME=" Coverage Results" MODIFIED="1659678720953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analysis" />
     <SUITE FILE_PATH="coverage/aggregate_neuron_data_py$get_sample_size_data.coverage" NAME="get_sample_size_data Coverage Results" MODIFIED="1661140142728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
@@ -349,5 +479,8 @@
     <SUITE FILE_PATH="coverage/CNN_Tang_project$pack_rsp.coverage" NAME="pack_rsp Coverage Results" MODIFIED="1656573229989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$pack_rsp.coverage" NAME="pack_rsp Coverage Results" MODIFIED="1656656679534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/compare_visualization_rsp_py$pattern_stimulus_test.coverage" NAME="pattern_stimulus_test Coverage Results" MODIFIED="1656666908160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+=======
+    <SUITE FILE_PATH="coverage/get_stat_py$GAN_recon.coverage" NAME="GAN_recon Coverage Results" MODIFIED="1687806949805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+>>>>>>> Stashed changes
   </component>
 </project>
