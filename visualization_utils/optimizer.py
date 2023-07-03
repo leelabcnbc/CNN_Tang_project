@@ -181,10 +181,6 @@ class Optimizer():
         forw_hook.remove()
 
         return new_img, losses, best_loss
-<<<<<<< Updated upstream
-=======
-
-
 class GANOptimzier():
     """
     Optimize an image to produce some result in a deep net.
@@ -239,43 +235,12 @@ class GANOptimzier():
     def optimize(self, input,target,max_iter=1000,
                  lr=np.linspace(5, 0.5, 1000),
                  debug=False, early_stopper=None):
-        """
-        Parameters:
-
-        image: image to start from, presumably where the target was
-        modified from
-
-        target: target activation, to be passed into loss_func
-
-        max_iter: maximum number of iterations to run
-
-        lr: 'learning rate' (multiplier of gradient added to image at
-        each step, or iterable of same length as max_iter with varying values)
-
-        clip_image: whether or not to clip the image to real (0-256) pixel
-        values, with standard torchvision transformations
-
-        sigma: sigma of the Gaussian smoothing at each iteration
-        (default value 0 means no smoothing), can be an iterable of
-        length max_iter like 'lr'
-
-        debug: whether or not to print loss each iteration
-
-        early_stopper: function that takes the list of losses so far,
-        returns True if the optimization process should stop
-
-        Returns:
-
-        optimized image
-        loss for the last iteration
-        """
         input.requires_grad_(False)
         new_input = torch.tensor(input, requires_grad=True)
         print(new_input.shape)
         # change it to an array even if it's constant, for the iterating code
         if isinstance(lr, int) or isinstance(lr, float):
             lr = [lr] * max_iter
-
         # set up hooks
         best_loss = 500
         # now do gradient ascent
@@ -309,4 +274,3 @@ class GANOptimzier():
                 break
 
         return new_input, losses, best_loss
->>>>>>> Stashed changes
