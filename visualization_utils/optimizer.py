@@ -241,21 +241,22 @@ class GANOptimzier():
         # change it to an array even if it's constant, for the iterating code
         if isinstance(lr, int) or isinstance(lr, float):
             lr = [lr] * max_iter
+        optimizer = torch.optim.Adam([new_input], lr = lr[0])
         # set up hooks
         best_loss = 500
         # now do gradient ascent
         losses = []
+        best_vector = new_input
         for i in tqdm(range(max_iter)):
             # get gradient
             image = self.gan(z=new_input)
             new_img = self.image_transform(image)
             out = self.net(new_img)
             loss = self.loss_func(out, target, new_img)
-
             if (loss < best_loss):
-                best_img = torch.clone(new_img)
+                best_vector = torch.clone(new_input)
                 best_loss = loss
-            losses.append(loss)
+            losses.append(loss.detach().cpu().numpy())
             self.net.zero_grad()
             loss.backward()
 
@@ -264,13 +265,15 @@ class GANOptimzier():
 
             # all processing of gradient was done in loss_func
             # even momentum if applicable; none is done here
-            with torch.no_grad():
-                new_input.data = new_input.data - lr[i] * new_input.grad
-                torch.clamp(new_input.data, -1, 1)
-            self.grads.clear()
+            #with torch.no_grad():
+                #new_input.data = new_input.data - lr[i] * new_input.grad
+            optimizer.step()
+
+                #torch.clamp(new_input.data, -1, 1)
+            #self.grads.clear()
 
             if early_stopper is not None and early_stopper(losses):
                 print(f'early stopping at iter {i}')
                 break
 
-        return new_input, losses, best_loss
+        return best_vector, new_input, np.array(losses), best_loss

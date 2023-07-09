@@ -7,9 +7,12 @@ from torchvision.transforms import CenterCrop,Resize
 from visualization_utils.optimizer import GANOptimzier
 from visualization_utils.losses import *
 from visualization_utils.utils import torch_rand_range
-
+from PIL import Image
+import matplotlib.pyplot as plt
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 def visualize_gan(network, gan,shape=128,
-              init_range=(-1, 1), max_iter=400, lr=np.linspace(1, 1, 100),
+              init_range=(-1, 1), max_iter=400, lr=np.linspace(1, 0.5, 100),
               min_loss_val=None, target=None, debug=False):
     """
     Returns:
@@ -61,15 +64,12 @@ def image_transform(img):
 def visualize_vector(net, G, target, input_size):
     # if multiple models are considered, then load each model one by one. Each neuron is contained in one folder, with
     # pictures equal to the number of models
-    G.eval()
-    net.eval()
-    vector, loss, best_loss = visualize_gan(net, G, shape=input_size,init_range=(-1, 1), max_iter=100, lr=np.linspace(0.1, 0.05, 100),target=target)
 
-    with torch.no_grad():
-        x = G(z=vector)
-        x = image_transform(x)
-        return x
 
+    return vector
+
+
+#%%
 site = 'm2s1'
 num_neurons = 299
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -93,4 +93,26 @@ val_rsp = np.load('../data/valRsp_m2s1.npy')
 val_img = np.load('../data/val_img_m2s1.npy')
 
 G = make_gan(gan_type='biggan', model_name='biggan-deep-256').to('cuda')
-visualize_vector(net, G, torch.tensor(val_rsp[0]).to(device),128)
+G.eval()
+net.eval()
+
+#%%
+
+#%%
+imList = []
+lossList = []
+for i in range(1):
+    vector, loss, best_loss = visualize_gan(net, G, shape=128,init_range=(-1, 1), max_iter=200, lr=np.linspace(0.001, 0.001, 1000),target=torch.tensor(val_rsp[4]).to(device))
+    img = G(z=vector)
+    img = image_transform(img)
+
+    x = img.detach().cpu().numpy()
+    x = x*255
+    a = Image.fromarray(x.astype('uint8'))
+    imList.append(a)
+    lossList.append(loss)
+
+
+plt.figure()
+plt.plot(lossList[0])
+plt.show()
